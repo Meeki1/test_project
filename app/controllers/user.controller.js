@@ -3,14 +3,8 @@ exports.ok = (req, res) => {
   res.status(200).send('Public Content.')
 }
 
-exports.logout = (req, res) => {
-  res.status(200).send('Sign In again')
-}
-
-exports.logout = (req, res) => {}
-
 exports.getUser = (req, res) => {
-  console.log('ya ymnbii')
+  console.log('i get User')
 }
 
 exports.putUser = (req, res) => {
