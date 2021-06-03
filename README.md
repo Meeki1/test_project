@@ -1,6 +1,6 @@
-﻿## test_project
- #Description
- This project is a test assignment
+﻿# test_project
+#Description
+This project is a test assignment
 #Installation
 1. npm install in root package
 2. change the settings to connect to your postgresql database in "db.config.js"
