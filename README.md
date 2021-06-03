@@ -1,5 +1,4 @@
 ﻿# test_project
-  # Description
   This project is a test assignment
   # Installation
   1. npm install in root package
