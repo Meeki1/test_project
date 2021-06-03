@@ -1,0 +1,37 @@
+version: "3.8"
+volumes: 
+  airat:
+  postgresstorage:
+services:
+  airatServer:
+    container_name: airatServer
+    image: airat
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    depends_on:
+      - postgres
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200m"
+        max-file: "3"
+  
+  postgres:
+    container_name: postgres
+    image: "postgres:alpine"
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "root"
+      POSTGRES_DB: "testdb"
+      POSTGRES_INITDB_ARGS: "--locale=ru_RU"
+      PGDATA: "/postgresdb"
+    command: ["postgres", "-c", "log_statement=all", "-c", "log_destination=stderr"]
+    volumes:
+      - postgresstorage:/postgresdb
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200m"
+        max-file: "3"

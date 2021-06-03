@@ -1,18 +1,16 @@
-FROM node:12
-# создание директории приложения
-WORKDIR /Airat/Desktop/test/testProject
+FROM node:8.16.0-alpine
 
-# установка зависимостей
-# символ астериск ("*") используется для того чтобы по возможности 
-# скопировать оба файла: package.json и package-lock.json
-COPY package*.json ./
-
-RUN npm install
-# Если вы создаете сборку для продакшн
-# RUN npm ci --only=production
-
-# копируем исходный код
+RUN apt-get update && apt-get upgrade -y && \
+    apt-get install -y nodejs \
+    npm
+WORKDIR /opt
 COPY . .
+RUN cd ./test_project && \
+    npm install
+
+WORKDIR /opt/test_project
 
 EXPOSE 8080
-CMD [ "node", "server.js" ]
+EXPOSE 8081
+
+CMD ["node", "server.js"]
